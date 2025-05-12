@@ -14,9 +14,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
+# Location: TWL_Timesheet/TWL_Timesheet/urls.py (Project directory)
+from django.contrib import admin  # Import admin for Django admin site
+from django.urls import path, include  # Import path and include for URL routing
+#from django.views.generic import RedirectView  # Import RedirectView for root URL redirection
+
+urlpatterns = [  # List of URL patterns
+    path('admin/', admin.site.urls),  # Map /admin/ to Django admin site
+    path('OrangeHRM/', include('OrangeHRM.urls')),  # Include timesheet app URLs under /timesheet/
+    #path('', RedirectView.as_view(url='/OrangeHRM/approve/'), name='root'),  # Redirect root URL (empty path) to timesheet list
 ]

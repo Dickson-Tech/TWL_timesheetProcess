@@ -1,0 +1,15 @@
+<!DOCTYPE html>  <!-- Declare HTML5 document -->
+<html>  <!-- Root HTML element -->
+<head>  <!-- Head section for metadata -->
+    <title>Submit Timesheet</title>  <!-- Set page title -->
+</head>
+<body>  <!-- Body section for content -->
+    <h1>Submit Timesheet</h1>  <!-- Heading for page -->
+    <form method="post">  <!-- Form for submitting timesheet data -->
+        {% csrf_token %}  <!-- Include CSRF token for security -->
+        {{ form.as_p }}  <!-- Render form fields as paragraphs -->
+        <button type="submit">Submit</button>  <!-- Submit button for form -->
+    </form>
+    <a href="{% url 'timesheet_list' %}">Back to Timesheet List</a>  <!-- Link to timesheet list view -->
+</body>
+</html>

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'OrangeHRM',  # Custom app for timesheet management
 ]
 
 MIDDLEWARE = [
@@ -74,8 +75,12 @@ WSGI_APPLICATION = 'TWL_Timesheet.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE':'django.db.backends.mysql',   #django.db.backends.postgresql_psycopg2',
+        'NAME': "time_sheetdb",
+        'USER': "root",
+        'PASSWORD': "Kopilga@2025", #"H70v1gfb9mF90J5xTmWv",
+        'HOST': 'localhost', #"containers-us-west-45.railway.app",
+        'PORT':'3306', # "6608",
     }
 }
 

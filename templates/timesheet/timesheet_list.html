@@ -1,0 +1,35 @@
+<!DOCTYPE html>  <!-- Declare HTML5 document -->
+<html>  <!-- Root HTML element -->
+<head>  <!-- Head section for metadata -->
+    <title>Timesheet List</title>  <!-- Set page title -->
+</head>
+<body>  <!-- Body section for content -->
+    <h1>Timesheet List</h1>  <!-- Heading for page -->
+    <a href="{% url 'submit_timesheet' %}">Submit New Timesheet</a> |  <!-- Link to submit timesheet view -->
+    <a href="{% url 'export_timesheet_summary' %}">Download Summary for Power BI</a>  <!-- Link to download CSV -->
+    <table border="1">  <!-- Table for displaying timesheets -->
+        <tr>  <!-- Table header row -->
+            <th>Employee</th>  <!-- Header for employee column -->
+            <th>Date</th>  <!-- Header for date column -->
+            <th>Hours Worked</th>  <!-- Header for hours worked column -->
+            <th>Overtime Hours</th>  <!-- Header for overtime hours column -->
+            <th>Status</th>  <!-- Header for status column -->
+            <th>Action</th>  <!-- Header for action column -->
+        </tr>
+        {% for timesheet in timesheets %}  <!-- Loop through timesheets -->
+        <tr>  <!-- Table row for each timesheet -->
+            <td>{{ timesheet.employee }}</td>  <!-- Display employee name -->
+            <td>{{ timesheet.date }}</td>  <!-- Display timesheet date -->
+            <td>{{ timesheet.hours_worked }}</td>  <!-- Display regular hours -->
+            <td>{{ timesheet.overtime_hours }}</td>  <!-- Display overtime hours -->
+            <td>{{ timesheet.status }}</td>  <!-- Display timesheet status -->
+            <td>  <!-- Action column -->
+                {% if timesheet.status == 'PENDING' and user == timesheet.employee.department.manager %}  <!-- Check if pending and user is manager -->
+                <a href="{% url 'approve_timesheet' timesheet.id %}">Approve/Reject</a>  <!-- Link to approve/reject view -->
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

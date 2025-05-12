@@ -1,0 +1,19 @@
+<!DOCTYPE html>  <!-- Declare HTML5 document -->
+<html>  <!-- Root HTML element -->
+<head>  <!-- Head section for metadata -->
+    <title>Approve Timesheet</title>  <!-- Set page title -->
+</head>
+<body>  <!-- Body section for content -->
+    <h1>Approve Timesheet</h1>  <!-- Heading for page -->
+    <p>Employee: {{ timesheet.employee }}</p>  <!-- Display employee name -->
+    <p>Date: {{ timesheet.date }}</p>  <!-- Display timesheet date -->
+    <p>Hours Worked: {{ timesheet.hours_worked }}</p>  <!-- Display regular hours -->
+    <p>Overtime Hours: {{ timesheet.overtime_hours }}</p>  <!-- Display overtime hours -->
+    <form method="post">  <!-- Form for approving/rejecting timesheet -->
+        {% csrf_token %}  <!-- Include CSRF token for security -->
+        <button type="submit" name="action" value="approve">Approve</button>  <!-- Approve button -->
+        <button type="submit" name="action" value="reject">Reject</button>  <!-- Reject button -->
+    </form>
+    <a href="{% url 'timesheet_list' %}">Back to Timesheet List</a>  <!-- Link to timesheet list view -->
+</body>
+</html>
